@@ -3,22 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connect Hub - Rede Social</title>
+    <title>Connect Hub - Sua Rede Social</title>
     <style>
         :root {
-            --primary: #6366f1;
-            --primary-dark: #4f46e5;
-            --secondary: #a855f7;
-            --bg: #f8fafc;
+            --primary: #8b5cf6;
+            --primary-dark: #7c3aed;
+            --secondary: #ec4899;
+            --bg: #f5f3ff;
             --white: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --border: #e2e8f0;
-            --gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+            --text-main: #1e1b4b;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+            --gradient-hover: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
         }
 
         body {
-            font-family: 'Inter', -apple-system, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             background-color: var(--bg);
             color: var(--text-main);
             margin: 0;
@@ -28,33 +29,44 @@
         /* --- HEADER --- */
         header {
             background: var(--white);
-            border-bottom: 1px solid var(--border);
-            padding: 10px 5%;
+            border-bottom: 2px solid var(--border);
+            padding: 12px 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             position: sticky;
             top: 0;
             z-index: 1000;
+            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.1);
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 8px;
-            font-weight: 800;
-            font-size: 22px;
-            color: var(--primary);
+            gap: 10px;
+            font-weight: 900;
+            font-size: 24px;
+            background: var(--gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .search-bar {
-            background: #f1f5f9;
-            border-radius: 20px;
-            padding: 8px 20px;
-            width: 400px;
+            background: #f3f4f6;
+            border-radius: 25px;
+            padding: 10px 25px;
+            width: 450px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            border: 1px solid transparent;
+            transition: 0.3s;
+        }
+
+        .search-bar:focus-within {
+            border-color: var(--primary);
+            background: white;
+            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
         }
 
         .search-bar input {
@@ -62,18 +74,19 @@
             background: transparent;
             outline: none;
             width: 100%;
-            font-size: 14px;
+            font-size: 15px;
         }
 
         .header-icons {
             display: flex;
-            gap: 20px;
+            gap: 25px;
             align-items: center;
+            font-size: 20px;
         }
 
         .profile-badge {
-            width: 35px;
-            height: 35px;
+            width: 40px;
+            height: 40px;
             background: var(--gradient);
             border-radius: 50%;
             display: flex;
@@ -81,43 +94,45 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 12px;
+            font-size: 14px;
+            cursor: pointer;
+            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
         }
 
         /* --- LAYOUT --- */
         .container {
             display: grid;
-            grid-template-columns: 280px 1fr 320px;
-            gap: 25px;
-            max-width: 1300px;
-            margin: 30px auto;
+            grid-template-columns: 300px 1fr 340px;
+            gap: 30px;
+            max-width: 1400px;
+            margin: 40px auto;
             padding: 0 20px;
         }
 
-        /* --- SIDEBAR LEFT (PERFIL) --- */
         .card {
             background: var(--white);
-            border-radius: 16px;
+            border-radius: 20px;
             border: 1px solid var(--border);
             overflow: hidden;
-            margin-bottom: 20px;
-            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
         }
 
+        /* --- PERFIL --- */
         .profile-card-header {
-            height: 80px;
+            height: 100px;
             background: var(--gradient);
             position: relative;
         }
 
         .profile-avatar-large {
-            width: 70px;
-            height: 70px;
+            width: 90px;
+            height: 90px;
             border-radius: 50%;
-            border: 4px solid white;
-            background: #444;
+            border: 5px solid white;
+            background: #333;
             position: absolute;
-            bottom: -35px;
+            bottom: -45px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -125,206 +140,156 @@
             justify-content: center;
             color: white;
             font-weight: bold;
-            font-size: 24px;
+            font-size: 32px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .profile-info {
             text-align: center;
-            padding: 45px 20px 20px;
+            padding: 55px 20px 25px;
         }
 
-        .profile-info h3 { margin: 0; font-size: 18px; }
-        .profile-info p { margin: 5px 0; color: var(--text-muted); font-size: 13px; }
+        .profile-info h3 { margin: 0; font-size: 20px; color: var(--text-main); }
+        .profile-info p { margin: 8px 0; color: var(--text-muted); font-size: 14px; }
 
         .stats {
             display: flex;
             justify-content: space-around;
-            padding: 15px 0;
+            padding: 20px 0;
+            background: #fafafa;
             border-top: 1px solid var(--border);
         }
 
         .stat-item { text-align: center; }
-        .stat-value { display: block; font-weight: 700; font-size: 16px; }
-        .stat-label { font-size: 11px; color: var(--text-muted); text-transform: uppercase; }
+        .stat-value { display: block; font-weight: 800; font-size: 18px; color: var(--primary); }
+        .stat-label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
 
-        /* --- MAIN FEED --- */
+        /* --- FEED --- */
         .stories-strip {
             display: flex;
-            gap: 15px;
+            gap: 20px;
             padding: 10px 0;
-            margin-bottom: 25px;
+            margin-bottom: 30px;
             overflow-x: auto;
+            scrollbar-width: none;
         }
 
         .story-circle {
-            min-width: 65px;
+            min-width: 75px;
             text-align: center;
+            cursor: pointer;
         }
 
         .story-img {
-            width: 60px;
-            height: 60px;
+            width: 70px;
+            height: 70px;
             border-radius: 50%;
-            border: 2px solid var(--primary);
-            padding: 2px;
-            margin-bottom: 5px;
+            border: 3px solid var(--primary);
+            padding: 3px;
+            margin-bottom: 8px;
             background-clip: content-box;
             background-color: white;
+            transition: 0.3s;
         }
+        .story-circle:hover .story-img { transform: scale(1.05); border-color: var(--secondary); }
 
         .post-input-card {
-            padding: 20px;
+            padding: 25px;
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 20px;
         }
 
-        .input-row {
-            display: flex;
-            gap: 15px;
-            align-items: center;
-        }
+        .input-row { display: flex; gap: 15px; }
 
-        .post-input-card textarea {
+        textarea {
             width: 100%;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            padding: 12px;
+            border: 2px solid #f3f4f6;
+            border-radius: 15px;
+            padding: 15px;
             resize: none;
-            background: #f8fafc;
+            background: #f9fafb;
             outline: none;
+            font-size: 16px;
+            transition: 0.3s;
         }
-
-        .input-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .action-icons { display: flex; gap: 15px; font-size: 18px; color: var(--text-muted); cursor: pointer; }
+        textarea:focus { border-color: var(--primary); background: white; }
 
         .btn-publish {
             background: var(--gradient);
             color: white;
             border: none;
-            padding: 10px 25px;
-            border-radius: 10px;
-            font-weight: 600;
+            padding: 12px 35px;
+            border-radius: 12px;
+            font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
+            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
         }
-
-        .btn-publish:hover { opacity: 0.9; transform: translateY(-1px); }
+        .btn-publish:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
 
         /* --- POST CARD --- */
-        .post-card {
-            padding: 20px;
-        }
+        .post-card { padding: 25px; animation: fadeIn 0.5s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .post-user-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
+        .post-user-info { display: flex; gap: 15px; align-items: center; }
+        .user-meta h4 { margin: 0; font-size: 16px; font-weight: 700; }
+        .user-meta span { font-size: 13px; color: var(--text-muted); }
 
-        .post-user-info { display: flex; gap: 12px; align-items: center; }
-        .user-meta h4 { margin: 0; font-size: 15px; }
-        .user-meta span { font-size: 12px; color: var(--text-muted); }
-
-        .post-text { font-size: 15px; line-height: 1.6; margin-bottom: 15px; }
+        .post-text { font-size: 16px; line-height: 1.7; margin: 20px 0; }
         .post-img-content {
             width: 100%;
-            border-radius: 12px;
-            background: #ffe4e6;
+            border-radius: 15px;
+            background: #ede9fe;
             aspect-ratio: 16/9;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 50px;
-            margin-bottom: 15px;
+            font-size: 60px;
+            margin-bottom: 20px;
         }
 
         .post-footer {
             display: flex;
-            justify-content: space-between;
-            padding-top: 15px;
+            justify-content: space-around;
+            padding-top: 20px;
             border-top: 1px solid var(--border);
-            color: var(--text-muted);
-            font-size: 14px;
         }
 
         .interaction-btn {
             display: flex;
             align-items: center;
-            gap: 8px;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-
-        .interaction-btn:hover { color: var(--primary); }
-
-        /* --- SIDEBAR RIGHT --- */
-        .section-title { font-weight: 700; font-size: 14px; padding: 15px 20px; border-bottom: 1px solid var(--border); margin: 0; }
-        
-        .list-item {
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            transition: 0.2s;
-        }
-
-        .list-item:hover { background: #f8fafc; }
-
-        .user-suggestion { display: flex; gap: 10px; align-items: center; }
-        .btn-follow {
-            border: 1px solid var(--primary);
-            color: var(--primary);
-            background: transparent;
-            padding: 5px 15px;
-            border-radius: 8px;
-            font-size: 12px;
-            font-weight: 600;
-            cursor: pointer;
-        }
-
-        .trending-item { padding: 10px 20px; }
-        .trending-item span { font-size: 11px; color: var(--text-muted); display: block; }
-        .trending-item h5 { margin: 2px 0; font-size: 14px; }
-
-        .online-list {
-            display: flex;
-            flex-wrap: wrap;
             gap: 10px;
-            padding: 15px 20px;
+            cursor: pointer;
+            font-weight: 600;
+            color: var(--text-muted);
+            transition: 0.2s;
+            padding: 8px 15px;
+            border-radius: 10px;
         }
+        .interaction-btn:hover { background: #f5f3ff; color: var(--primary); }
+        .interaction-btn.liked { color: #ef4444; }
 
+        /* --- ONLINE USERS --- */
         .online-user {
-            width: 40px;
-            height: 40px;
+            width: 45px;
+            height: 45px;
             border-radius: 50%;
             background: var(--gradient);
             display: flex;
             align-items: center;
             justify-content: center;
             color: white;
-            font-size: 10px;
             font-weight: bold;
-            border: 2px solid white;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border: 3px solid white;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+            transition: 0.3s;
         }
+        .online-user:hover { transform: translateY(-5px); }
 
-        @media (max-width: 1100px) {
-            .container { grid-template-columns: 1fr 320px; }
-            .sidebar-left { display: none; }
-        }
-
-        @media (max-width: 800px) {
-            .container { grid-template-columns: 1fr; }
-            .sidebar-right { display: none; }
-            .search-bar { width: 200px; }
-        }
+        @media (max-width: 1100px) { .container { grid-template-columns: 1fr 340px; } .sidebar-left { display: none; } }
+        @media (max-width: 800px) { .container { grid-template-columns: 1fr; } .sidebar-right { display: none; } .search-bar { width: 180px; } }
     </style>
 </head>
 <body>
@@ -333,12 +298,12 @@
         <div class="logo">♦ Connect Hub</div>
         <div class="search-bar">
             <span>🔍</span>
-            <input type="text" placeholder="Pesquisar pessoas, posts...">
+            <input type="text" placeholder="Pesquisar no Hub...">
         </div>
         <div class="header-icons">
-            <span>🔔</span>
-            <span>💬</span>
-            <div class="profile-badge">LG</div>
+            <span title="Notificações">🔔</span>
+            <span title="Mensagens">💬</span>
+            <div class="profile-badge">VC</div>
         </div>
     </header>
 
@@ -347,80 +312,61 @@
         <div class="sidebar-left">
             <div class="card">
                 <div class="profile-card-header">
-                    <div class="profile-avatar-large">LG</div>
+                    <div class="profile-avatar-large">VC</div>
                 </div>
                 <div class="profile-info">
-                    <h3>Lucas Gabriel</h3>
-                    <p>@lucasgabriel</p>
+                    <h3>Você</h3>
+                    <p>@voce_no_hub</p>
                 </div>
                 <div class="stats">
-                    <div class="stat-item"><span class="stat-value">4</span><span class="stat-label">Posts</span></div>
-                    <div class="stat-item"><span class="stat-value">248</span><span class="stat-label">Seguindo</span></div>
-                    <div class="stat-item"><span class="stat-value">1.2k</span><span class="stat-label">Seguidores</span></div>
+                    <div class="stat-item"><span class="stat-value" id="postCount">1</span><span class="stat-label">Posts</span></div>
+                    <div class="stat-item"><span class="stat-value">512</span><span class="stat-label">Seguindo</span></div>
+                    <div class="stat-item"><span class="stat-value">2.4k</span><span class="stat-label">Seguidores</span></div>
                 </div>
             </div>
         </div>
 
         <!-- FEED CENTRAL -->
         <div class="main-feed">
-            <!-- STORIES -->
             <div class="stories-strip">
                 <div class="story-circle">
-                    <div class="story-img" style="display: flex; align-items: center; justify-content: center; font-size: 24px; border-style: dashed; color: var(--text-muted);">+</div>
-                    <span style="font-size: 11px;">Seu story</span>
+                    <div class="story-img" style="display: flex; align-items: center; justify-content: center; font-size: 30px; border-style: dashed; color: #cbd5e1;">+</div>
+                    <span style="font-size: 12px; font-weight: 600;">Seu story</span>
                 </div>
-                <div class="story-circle">
-                    <div class="story-img" style="background: #fef3c7; display: flex; align-items: center; justify-content: center;">🌅</div>
-                    <span style="font-size: 11px;">Ana</span>
-                </div>
-                <div class="story-circle">
-                    <div class="story-img" style="background: #e0f2fe; display: flex; align-items: center; justify-content: center;">☕</div>
-                    <span style="font-size: 11px;">Carlos</span>
-                </div>
-                <div class="story-circle">
-                    <div class="story-img" style="background: #fce7f3; display: flex; align-items: center; justify-content: center;">🏖️</div>
-                    <span style="font-size: 11px;">Fernanda</span>
-                </div>
-                <div class="story-circle">
-                    <div class="story-img" style="background: #dcfce7; display: flex; align-items: center; justify-content: center;">🎮</div>
-                    <span style="font-size: 11px;">Rafael</span>
-                </div>
+                <div class="story-circle"><div class="story-img" style="background: #fef3c7; display: flex; align-items: center; justify-content: center;">🎨</div><span style="font-size: 12px;">Ana</span></div>
+                <div class="story-circle"><div class="story-img" style="background: #e0f2fe; display: flex; align-items: center; justify-content: center;">🚀</div><span style="font-size: 12px;">Carlos</span></div>
+                <div class="story-circle"><div class="story-img" style="background: #fce7f3; display: flex; align-items: center; justify-content: center;">📸</div><span style="font-size: 12px;">Bia</span></div>
+                <div class="story-circle"><div class="story-img" style="background: #dcfce7; display: flex; align-items: center; justify-content: center;">💻</div><span style="font-size: 12px;">Dev</span></div>
             </div>
 
-            <!-- INPUT DE POST -->
             <div class="card post-input-card">
                 <div class="input-row">
-                    <div class="profile-badge" style="width: 45px; height: 45px;">LG</div>
-                    <textarea placeholder="No que você está pensando, Lucas?" rows="2"></textarea>
+                    <div class="profile-badge" style="width: 50px; height: 50px;">VC</div>
+                    <textarea id="postContent" placeholder="O que está acontecendo agora?" rows="2"></textarea>
                 </div>
-                <div class="input-actions">
-                    <div class="action-icons">
-                        <span>📷</span> <span>🎬</span> <span>😊</span> <span>📍</span>
-                    </div>
-                    <button class="btn-publish">Publicar</button>
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <div style="display: flex; gap: 20px; font-size: 20px; cursor: pointer;">🖼️ 🎥 😊 📍</div>
+                    <button class="btn-publish" onclick="publishPost()">Publicar</button>
                 </div>
             </div>
 
-            <!-- POST EXEMPLO -->
-            <div class="card post-card">
-                <div class="post-user-header">
+            <div id="feed">
+                <!-- POST INICIAL -->
+                <div class="card post-card">
                     <div class="post-user-info">
-                        <div class="profile-badge" style="background: #db2777;">AB</div>
+                        <div class="profile-badge" style="background: #ec4899;">AB</div>
                         <div class="user-meta">
                             <h4>Ana Beatriz <span>@anabeatriz</span></h4>
-                            <span>2 horas atrás</span>
+                            <span>Agora mesmo</span>
                         </div>
                     </div>
-                    <span>•••</span>
-                </div>
-                <div class="post-text">
-                    Acabei de terminar meu projeto de design! Foram semanas de trabalho intenso, mas o resultado ficou incrível. 😍 <b>#design #uxdesign #criatividade</b>
-                </div>
-                <div class="post-img-content">🎨</div>
-                <div class="post-footer">
-                    <div class="interaction-btn">❤️ 32</div>
-                    <div class="interaction-btn">💬 10</div>
-                    <div class="interaction-btn">🔗 5</div>
+                    <div class="post-text">Bem-vindo ao novo Connect Hub! O design está incrível e agora tudo funciona. 🚀✨</div>
+                    <div class="post-img-content">✨</div>
+                    <div class="post-footer">
+                        <div class="interaction-btn" onclick="toggleLike(this)">❤️ <span class="count">42</span></div>
+                        <div class="interaction-btn">💬 12</div>
+                        <div class="interaction-btn">🔗 8</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -428,55 +374,85 @@
         <!-- SIDEBAR DIREITA -->
         <div class="sidebar-right">
             <div class="card">
-                <h4 class="section-title">QUEM SEGUIR</h4>
-                <div class="list-item">
-                    <div class="user-suggestion">
-                        <div class="profile-badge" style="background: #4f46e5;">JC</div>
-                        <div><div style="font-size: 13px; font-weight: 600;">Julia Costa</div><div style="font-size: 11px; color: var(--text-muted);">12 amigos em comum</div></div>
+                <h4 style="padding: 20px; margin: 0; border-bottom: 1px solid var(--border); font-size: 15px;">QUEM SEGUIR</h4>
+                <div style="padding: 10px 0;">
+                    <div style="display: flex; justify-content: space-between; padding: 12px 20px; align-items: center;">
+                        <div style="display: flex; gap: 12px; align-items: center;">
+                            <div class="profile-badge" style="background: #6366f1;">MT</div>
+                            <div><div style="font-weight: bold; font-size: 14px;">Mateus Silva</div><div style="font-size: 11px; color: var(--text-muted);">Seguido por Ana</div></div>
+                        </div>
+                        <button style="color: var(--primary); background: none; border: 1px solid var(--primary); padding: 5px 12px; border-radius: 8px; font-weight: bold; cursor: pointer;" onclick="this.innerText='Seguindo'; this.style.background='#f5f3ff'">Seguir</button>
                     </div>
-                    <button class="btn-follow">Seguir</button>
-                </div>
-                <div class="list-item">
-                    <div class="user-suggestion">
-                        <div class="profile-badge" style="background: #dc2626;">PA</div>
-                        <div><div style="font-size: 13px; font-weight: 600;">Pedro Alves</div><div style="font-size: 11px; color: var(--text-muted);">8 amigos em comum</div></div>
-                    </div>
-                    <button class="btn-follow">Seguir</button>
                 </div>
             </div>
 
             <div class="card">
-                <h4 class="section-title">TRENDING</h4>
-                <div class="trending-item">
-                    <span>Tecnologia</span>
-                    <h5>#InteligênciaArtificial</h5>
-                    <span>48.2k posts</span>
-                </div>
-                <div class="trending-item">
-                    <span>Entretenimento</span>
-                    <h5>#SeriesNetflix</h5>
-                    <span>32.1k posts</span>
-                </div>
-                <div class="trending-item">
-                    <span>Esportes</span>
-                    <h5>#Brasileirão2025</h5>
-                    <span>27.8k posts</span>
-                </div>
-            </div>
-
-            <div class="card">
-                <h4 class="section-title">ONLINE AGORA</h4>
-                <div class="online-list">
-                    <div class="online-user" style="background: #db2777;">AB</div>
-                    <div class="online-user" style="background: #2563eb;">CM</div>
-                    <div class="online-user" style="background: #16a34a;">FL</div>
-                    <div class="online-user" style="background: #d97706;">RT</div>
-                    <div class="online-user" style="background: #7c3aed;">JC</div>
-                    <div class="online-user" style="background: #dc2626;">PA</div>
+                <h4 style="padding: 20px; margin: 0; border-bottom: 1px solid var(--border); font-size: 15px;">ONLINE AGORA</h4>
+                <div style="display: flex; flex-wrap: wrap; gap: 12px; padding: 20px;">
+                    <div class="online-user">AB</div>
+                    <div class="online-user" style="background: #3b82f6;">CS</div>
+                    <div class="online-user" style="background: #10b981;">DV</div>
+                    <div class="online-user" style="background: #f59e0b;">MA</div>
                 </div>
             </div>
         </div>
     </div>
 
+    <script>
+        let postCounter = 1;
+
+        function publishPost() {
+            const content = document.getElementById('postContent').value.trim();
+            if (content === "") {
+                alert("Escreva algo para publicar!");
+                return;
+            }
+
+            const feed = document.getElementById('feed');
+            const newPost = document.createElement('div');
+            newPost.className = 'card post-card';
+            
+            const emojis = ['🌟', '🚀', '🔥', '💎', '🌈', '⚡'];
+            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+
+            newPost.innerHTML = `
+                <div class="post-user-info">
+                    <div class="profile-badge">VC</div>
+                    <div class="user-meta">
+                        <h4>Você <span>@voce_no_hub</span></h4>
+                        <span>Agora mesmo</span>
+                    </div>
+                </div>
+                <div class="post-text">${content}</div>
+                <div class="post-img-content" style="background: #f3f4f6">${randomEmoji}</div>
+                <div class="post-footer">
+                    <div class="interaction-btn" onclick="toggleLike(this)">❤️ <span class="count">0</span></div>
+                    <div class="interaction-btn">💬 0</div>
+                    <div class="interaction-btn">🔗 0</div>
+                </div>
+            `;
+
+            feed.insertBefore(newPost, feed.firstChild);
+            document.getElementById('postContent').value = "";
+            
+            postCounter++;
+            document.getElementById('postCount').innerText = postCounter;
+        }
+
+        function toggleLike(btn) {
+            btn.classList.toggle('liked');
+            const countSpan = btn.querySelector('.count');
+            let count = parseInt(countSpan.innerText);
+            
+            if (btn.classList.contains('liked')) {
+                count++;
+                btn.style.color = "#ef4444";
+            } else {
+                count--;
+                btn.style.color = "var(--text-muted)";
+            }
+            countSpan.innerText = count;
+        }
+    </script>
 </body>
 </html>
