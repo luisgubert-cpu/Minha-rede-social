@@ -7,7 +7,6 @@
     <style>
         :root {
             --primary: #8b5cf6;
-            --primary-dark: #7c3aed;
             --secondary: #ec4899;
             --bg: #f5f3ff;
             --white: #ffffff;
@@ -15,7 +14,6 @@
             --text-muted: #6b7280;
             --border: #e5e7eb;
             --gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-            --gradient-hover: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
         }
 
         body {
@@ -23,10 +21,9 @@
             background-color: var(--bg);
             color: var(--text-main);
             margin: 0;
-            padding: 0;
+            padding-bottom: 50px;
         }
 
-        /* --- HEADER --- */
         header {
             background: var(--white);
             border-bottom: 2px solid var(--border);
@@ -37,75 +34,23 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.1);
         }
 
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 10px;
             font-weight: 900;
             font-size: 24px;
             background: var(--gradient);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-        }
-
-        .search-bar {
-            background: #f3f4f6;
-            border-radius: 25px;
-            padding: 10px 25px;
-            width: 450px;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            border: 1px solid transparent;
-            transition: 0.3s;
-        }
-
-        .search-bar:focus-within {
-            border-color: var(--primary);
-            background: white;
-            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
-        }
-
-        .search-bar input {
-            border: none;
-            background: transparent;
-            outline: none;
-            width: 100%;
-            font-size: 15px;
-        }
-
-        .header-icons {
-            display: flex;
-            gap: 25px;
-            align-items: center;
-            font-size: 20px;
-        }
-
-        .profile-badge {
-            width: 40px;
-            height: 40px;
-            background: var(--gradient);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 14px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
         }
 
-        /* --- LAYOUT --- */
         .container {
             display: grid;
             grid-template-columns: 300px 1fr 340px;
             gap: 30px;
             max-width: 1400px;
-            margin: 40px auto;
+            margin: 30px auto;
             padding: 0 20px;
         }
 
@@ -113,259 +58,145 @@
             background: var(--white);
             border-radius: 20px;
             border: 1px solid var(--border);
-            overflow: hidden;
             margin-bottom: 25px;
-            box-shadow: 0 10px 15px -3px rgba(0,0,0,0.05);
+            box-shadow: 0 4px 6px -1px rgba(0,0,0,0.05);
+            overflow: hidden;
         }
 
-        /* --- PERFIL --- */
-        .profile-card-header {
-            height: 100px;
-            background: var(--gradient);
-            position: relative;
-        }
-
-        .profile-avatar-large {
-            width: 90px;
-            height: 90px;
-            border-radius: 50%;
-            border: 5px solid white;
-            background: #333;
-            position: absolute;
-            bottom: -45px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 32px;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .profile-info {
-            text-align: center;
-            padding: 55px 20px 25px;
-        }
-
-        .profile-info h3 { margin: 0; font-size: 20px; color: var(--text-main); }
-        .profile-info p { margin: 8px 0; color: var(--text-muted); font-size: 14px; }
-
-        .stats {
-            display: flex;
-            justify-content: space-around;
-            padding: 20px 0;
-            background: #fafafa;
-            border-top: 1px solid var(--border);
-        }
-
-        .stat-item { text-align: center; }
-        .stat-value { display: block; font-weight: 800; font-size: 18px; color: var(--primary); }
-        .stat-label { font-size: 12px; color: var(--text-muted); font-weight: 600; }
-
-        /* --- FEED --- */
+        /* STORIES */
         .stories-strip {
             display: flex;
-            gap: 20px;
-            padding: 10px 0;
-            margin-bottom: 30px;
+            gap: 15px;
+            padding: 15px;
             overflow-x: auto;
             scrollbar-width: none;
         }
-
-        .story-circle {
-            min-width: 75px;
-            text-align: center;
-            cursor: pointer;
+        .story-item { text-align: center; min-width: 70px; cursor: pointer; position: relative; }
+        .story-ring {
+            width: 60px; height: 60px; border-radius: 50%; padding: 3px;
+            background: var(--gradient); margin: 0 auto 5px;
         }
-
-        .story-img {
-            width: 70px;
-            height: 70px;
-            border-radius: 50%;
-            border: 3px solid var(--primary);
-            padding: 3px;
-            margin-bottom: 8px;
-            background-clip: content-box;
-            background-color: white;
-            transition: 0.3s;
+        .story-avatar {
+            width: 100%; height: 100%; border-radius: 50%; background: #eee;
+            border: 2px solid white; display: flex; align-items: center; justify-content: center; font-weight: bold; color: #555;
         }
-        .story-circle:hover .story-img { transform: scale(1.05); border-color: var(--secondary); }
+        .story-name { font-size: 11px; font-weight: 600; color: var(--text-muted); }
 
-        .post-input-card {
-            padding: 25px;
-            display: flex;
-            flex-direction: column;
-            gap: 20px;
-        }
-
-        .input-row { display: flex; gap: 15px; }
-
+        /* POST INPUT */
+        .post-input { padding: 20px; }
         textarea {
-            width: 100%;
-            border: 2px solid #f3f4f6;
-            border-radius: 15px;
-            padding: 15px;
-            resize: none;
-            background: #f9fafb;
-            outline: none;
-            font-size: 16px;
-            transition: 0.3s;
+            width: 100%; border: 1px solid var(--border); border-radius: 12px;
+            padding: 12px; resize: none; background: #f9fafb; outline: none; font-size: 15px;
         }
-        textarea:focus { border-color: var(--primary); background: white; }
-
-        .btn-publish {
-            background: var(--gradient);
-            color: white;
-            border: none;
-            padding: 12px 35px;
-            border-radius: 12px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+        .input-btns { display: flex; justify-content: space-between; margin-top: 15px; }
+        .btn {
+            padding: 8px 20px; border-radius: 10px; border: none; font-weight: 700; cursor: pointer; transition: 0.2s;
         }
-        .btn-publish:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
+        .btn-primary { background: var(--gradient); color: white; }
+        .btn-story { background: #f3f4f6; color: var(--text-main); border: 1px solid var(--border); }
 
-        /* --- POST CARD --- */
-        .post-card { padding: 25px; animation: fadeIn 0.5s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-
-        .post-user-info { display: flex; gap: 15px; align-items: center; }
-        .user-meta h4 { margin: 0; font-size: 16px; font-weight: 700; }
-        .user-meta span { font-size: 13px; color: var(--text-muted); }
-
-        .post-text { font-size: 16px; line-height: 1.7; margin: 20px 0; }
-        .post-img-content {
-            width: 100%;
-            border-radius: 15px;
-            background: #ede9fe;
-            aspect-ratio: 16/9;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 60px;
-            margin-bottom: 20px;
-        }
-
+        /* POST CARD */
+        .post-card { padding: 20px; position: relative; }
+        .post-header { display: flex; align-items: center; gap: 12px; margin-bottom: 15px; }
+        .post-time { font-size: 11px; color: var(--text-muted); margin-left: auto; }
+        .post-text { font-size: 16px; line-height: 1.6; margin-bottom: 15px; }
+        
         .post-footer {
-            display: flex;
-            justify-content: space-around;
-            padding-top: 20px;
-            border-top: 1px solid var(--border);
+            display: flex; justify-content: space-around; padding-top: 15px; border-top: 1px solid var(--border);
         }
+        .action-btn { cursor: pointer; display: flex; align-items: center; gap: 5px; font-size: 14px; font-weight: 600; color: var(--text-muted); }
+        .action-btn.active { color: #ef4444; }
+        .action-btn.saved { color: #f59e0b; }
 
-        .interaction-btn {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            font-weight: 600;
-            color: var(--text-muted);
-            transition: 0.2s;
-            padding: 8px 15px;
-            border-radius: 10px;
-        }
-        .interaction-btn:hover { background: #f5f3ff; color: var(--primary); }
-        .interaction-btn.liked { color: #ef4444; }
+        /* COMMENTS */
+        .comment-section { background: #f9fafb; padding: 15px; border-top: 1px solid var(--border); }
+        .comment { font-size: 13px; margin-bottom: 8px; }
+        .comment b { color: var(--primary); }
+        .comment-input-area { display: flex; gap: 10px; margin-top: 10px; }
+        .comment-input { flex: 1; border: 1px solid var(--border); border-radius: 20px; padding: 5px 15px; font-size: 13px; outline: none; }
 
-        /* --- ONLINE USERS --- */
-        .online-user {
-            width: 45px;
-            height: 45px;
-            border-radius: 50%;
-            background: var(--gradient);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            border: 3px solid white;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            cursor: pointer;
-            transition: 0.3s;
+        /* MODAL STORY */
+        #story-modal {
+            display: none; position: fixed; top:0; left:0; width:100%; height:100%;
+            background: rgba(0,0,0,0.9); z-index: 2000; justify-content: center; align-items: center;
         }
-        .online-user:hover { transform: translateY(-5px); }
+        .story-content {
+            width: 350px; height: 600px; background: var(--gradient); border-radius: 20px;
+            padding: 40px; color: white; display: flex; flex-direction: column; justify-content: center; text-align: center;
+            position: relative;
+        }
+        .close-story { position: absolute; top: 20px; right: 20px; font-size: 30px; cursor: pointer; }
 
         @media (max-width: 1100px) { .container { grid-template-columns: 1fr 340px; } .sidebar-left { display: none; } }
-        @media (max-width: 800px) { .container { grid-template-columns: 1fr; } .sidebar-right { display: none; } .search-bar { width: 180px; } }
+        @media (max-width: 800px) { .container { grid-template-columns: 1fr; } .sidebar-right { display: none; } }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">📸 InstaPro</div>
-        <div class="search-bar">
-            <span>🔍</span>
-            <input type="text" placeholder="Pesquisar no Hub...">
-        </div>
-        <div class="header-icons">
-            <span title="Notificações">🔔</span>
-            <span title="Mensagens">💬</span>
-            <div class="profile-badge">VC</div>
-        </div>
+        <div class="profile-badge" style="width: 35px; height: 35px; background: var(--gradient); border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold;">VC</div>
     </header>
 
     <div class="container">
         <!-- SIDEBAR ESQUERDA -->
         <div class="sidebar-left">
-            <div class="card">
-                <div class="profile-card-header">
-                    <div class="profile-avatar-large">VC</div>
-                </div>
-                <div class="profile-info">
-                    <h3>Você</h3>
-                    <p>@voce_no_hub</p>
-                </div>
-                <div class="stats">
-                    <div class="stat-item"><span class="stat-value" id="postCount">1</span><span class="stat-label">Posts</span></div>
-                    <div class="stat-item"><span class="stat-value">512</span><span class="stat-label">Seguindo</span></div>
-                    <div class="stat-item"><span class="stat-value">2.4k</span><span class="stat-label">Seguidores</span></div>
+            <div class="card" style="padding: 20px; text-align: center;">
+                <div style="width: 80px; height: 80px; background: var(--gradient); border-radius: 50%; margin: 0 auto 15px; display: flex; align-items: center; justify-content: center; color: white; font-size: 30px; font-weight: bold;">VC</div>
+                <h3>Você</h3>
+                <p style="color: var(--text-muted); font-size: 14px;">@voce_no_pro</p>
+                <div style="display: flex; justify-content: space-around; margin-top: 20px; border-top: 1px solid var(--border); padding-top: 15px;">
+                    <div><b id="post-count">1</b><br><small>Posts</small></div>
+                    <div><b>512</b><br><small>Seguindo</small></div>
+                    <div><b>2.4k</b><br><small>Seguidores</small></div>
                 </div>
             </div>
         </div>
 
-        <!-- FEED CENTRAL -->
+        <!-- FEED -->
         <div class="main-feed">
-            <div class="stories-strip">
-                <div class="story-circle">
-                    <div class="story-img" style="display: flex; align-items: center; justify-content: center; font-size: 30px; border-style: dashed; color: #cbd5e1;">+</div>
-                    <span style="font-size: 12px; font-weight: 600;">Seu story</span>
-                </div>
-                <div class="story-circle"><div class="story-img" style="background: #fef3c7; display: flex; align-items: center; justify-content: center;">🎨</div><span style="font-size: 12px;">Ana</span></div>
-                <div class="story-circle"><div class="story-img" style="background: #e0f2fe; display: flex; align-items: center; justify-content: center;">🚀</div><span style="font-size: 12px;">Carlos</span></div>
-                <div class="story-circle"><div class="story-img" style="background: #fce7f3; display: flex; align-items: center; justify-content: center;">📸</div><span style="font-size: 12px;">Bia</span></div>
-                <div class="story-circle"><div class="story-img" style="background: #dcfce7; display: flex; align-items: center; justify-content: center;">💻</div><span style="font-size: 12px;">Dev</span></div>
-            </div>
-
-            <div class="card post-input-card">
-                <div class="input-row">
-                    <div class="profile-badge" style="width: 50px; height: 50px;">VC</div>
-                    <textarea id="postContent" placeholder="O que está acontecendo agora?" rows="2"></textarea>
-                </div>
-                <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <div style="display: flex; gap: 20px; font-size: 20px; cursor: pointer;">🖼️ 🎥 😊 📍</div>
-                    <button class="btn-publish" onclick="publishPost()">Publicar</button>
-                </div>
-            </div>
-
-            <div id="feed">
-                <!-- POST INICIAL -->
-                <div class="card post-card">
-                    <div class="post-user-info">
-                        <div class="profile-badge" style="background: #ec4899;">AB</div>
-                        <div class="user-meta">
-                            <h4>Ana Beatriz <span>@anabeatriz</span></h4>
-                            <span>Agora mesmo</span>
-                        </div>
+            <!-- STORIES -->
+            <div class="card">
+                <div class="stories-strip" id="stories-list">
+                    <div class="story-item" onclick="viewStory('Bem-vindo ao InstaPro! 🚀')">
+                        <div class="story-ring"><div class="story-avatar">IP</div></div>
+                        <span class="story-name">InstaPro</span>
                     </div>
-                    <div class="post-text">Bem-vindo ao novo InstaPro! O design está incrível e agora tudo funciona. 🚀✨</div>
-                    <div class="post-img-content">✨</div>
+                </div>
+            </div>
+
+            <!-- POST INPUT -->
+            <div class="card post-input">
+                <textarea id="main-input" placeholder="O que você quer compartilhar?" rows="3"></textarea>
+                <div class="input-btns">
+                    <button class="btn btn-story" onclick="addStory()">+ Story</button>
+                    <button class="btn btn-primary" onclick="addPost()">Publicar</button>
+                </div>
+            </div>
+
+            <!-- FEED LIST -->
+            <div id="feed-list">
+                <!-- POST EXEMPLO -->
+                <div class="card post-card">
+                    <div class="post-header">
+                        <div style="width: 35px; height: 35px; background: #ec4899; border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">AB</div>
+                        <b>Ana Beatriz</b>
+                        <span class="post-time">há 5 minutos</span>
+                    </div>
+                    <div class="post-text">Acabei de entrar no InstaPro e estou amando as novas funcionalidades! 💖✨</div>
                     <div class="post-footer">
-                        <div class="interaction-btn" onclick="toggleLike(this)">❤️ <span class="count">42</span></div>
-                        <div class="interaction-btn">💬 12</div>
-                        <div class="interaction-btn">🔗 8</div>
+                        <div class="action-btn" onclick="toggleLike(this)">❤️ <span>42</span></div>
+                        <div class="action-btn" onclick="focusComment(this)">💬 Comentar</div>
+                        <div class="action-btn" onclick="sharePost()">✈️</div>
+                        <div class="action-btn" onclick="toggleSave(this)">🔖</div>
+                    </div>
+                    <div class="comment-section">
+                        <div class="comments-list">
+                            <div class="comment"><b>Mateus:</b> Ficou muito bom mesmo! 🔥</div>
+                        </div>
+                        <div class="comment-input-area">
+                            <input type="text" class="comment-input" placeholder="Escreva um comentário..." onkeypress="postComment(event, this)">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -374,85 +205,155 @@
         <!-- SIDEBAR DIREITA -->
         <div class="sidebar-right">
             <div class="card">
-                <h4 style="padding: 20px; margin: 0; border-bottom: 1px solid var(--border); font-size: 15px;">QUEM SEGUIR</h4>
-                <div style="padding: 10px 0;">
-                    <div style="display: flex; justify-content: space-between; padding: 12px 20px; align-items: center;">
-                        <div style="display: flex; gap: 12px; align-items: center;">
-                            <div class="profile-badge" style="background: #6366f1;">MT</div>
-                            <div><div style="font-weight: bold; font-size: 14px;">Mateus Silva</div><div style="font-size: 11px; color: var(--text-muted);">Seguido por Ana</div></div>
+                <h4 style="padding: 15px; margin: 0; border-bottom: 1px solid var(--border);">SUGESTÕES</h4>
+                <div style="padding: 10px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between; padding: 10px;">
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <div style="width: 30px; height: 30px; background: #6366f1; border-radius: 50%;"></div>
+                            <span style="font-size: 14px; font-weight: 600;">Carlos Silva</span>
                         </div>
-                        <button style="color: var(--primary); background: none; border: 1px solid var(--primary); padding: 5px 12px; border-radius: 8px; font-weight: bold; cursor: pointer;" onclick="this.innerText='Seguindo'; this.style.background='#f5f3ff'">Seguir</button>
+                        <button style="color: var(--primary); background: none; border: none; font-weight: bold; cursor: pointer;">Seguir</button>
                     </div>
-                </div>
-            </div>
-
-            <div class="card">
-                <h4 style="padding: 20px; margin: 0; border-bottom: 1px solid var(--border); font-size: 15px;">ONLINE AGORA</h4>
-                <div style="display: flex; flex-wrap: wrap; gap: 12px; padding: 20px;">
-                    <div class="online-user">AB</div>
-                    <div class="online-user" style="background: #3b82f6;">CS</div>
-                    <div class="online-user" style="background: #10b981;">DV</div>
-                    <div class="online-user" style="background: #f59e0b;">MA</div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- STORY MODAL -->
+    <div id="story-modal">
+        <div class="story-content">
+            <span class="close-story" onclick="closeStory()">&times;</span>
+            <h2 id="story-text-display"></h2>
+        </div>
+    </div>
+
     <script>
-        let postCounter = 1;
+        let postCount = 1;
 
-        function publishPost() {
-            const content = document.getElementById('postContent').value.trim();
-            if (content === "") {
-                alert("Escreva algo para publicar!");
-                return;
+        // FUNÇÃO PARA EMOJIS AUTOMÁTICOS
+        function getAutoEmojis(text) {
+            const map = {
+                'feliz': '😊✨', 'triste': '😢💔', 'amor': '❤️😍', 'festa': '🎉🥳',
+                'trabalho': '💻💼', 'comida': '🍕😋', 'viagem': '✈️🌍', 'futebol': '⚽🔥',
+                'musica': '🎵🎧', 'bom dia': '☀️☕', 'boa noite': '🌙✨'
+            };
+            let emojis = '';
+            for (let key in map) {
+                if (text.toLowerCase().includes(key)) emojis += ' ' + map[key];
             }
+            return emojis || ' ✨';
+        }
 
-            const feed = document.getElementById('feed');
-            const newPost = document.createElement('div');
-            newPost.className = 'card post-card';
+        // POSTAR
+        function addPost() {
+            const input = document.getElementById('main-input');
+            const text = input.value.trim();
+            if (!text) return alert("Escreva algo!");
+
+            const feed = document.getElementById('feed-list');
+            const post = document.createElement('div');
+            post.className = 'card post-card';
             
-            const emojis = ['🌟', '🚀', '🔥', '💎', '🌈', '⚡'];
-            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const time = new Date();
+            const emojis = getAutoEmojis(text);
 
-            newPost.innerHTML = `
-                <div class="post-user-info">
-                    <div class="profile-badge">VC</div>
-                    <div class="user-meta">
-                        <h4>Você <span>@voce_no_hub</span></h4>
-                        <span>Agora mesmo</span>
+            post.innerHTML = `
+                <div class="post-header">
+                    <div style="width: 35px; height: 35px; background: var(--gradient); border-radius: 50%; color: white; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 12px;">VC</div>
+                    <b>Você</b>
+                    <span class="post-time" data-time="${time.getTime()}">agora mesmo</span>
+                </div>
+                <div class="post-text">${text}${emojis}</div>
+                <div class="post-footer">
+                    <div class="action-btn" onclick="toggleLike(this)">❤️ <span>0</span></div>
+                    <div class="action-btn" onclick="focusComment(this)">💬 Comentar</div>
+                    <div class="action-btn" onclick="sharePost()">✈️</div>
+                    <div class="action-btn" onclick="toggleSave(this)">🔖</div>
+                </div>
+                <div class="comment-section">
+                    <div class="comments-list"></div>
+                    <div class="comment-input-area">
+                        <input type="text" class="comment-input" placeholder="Escreva um comentário..." onkeypress="postComment(event, this)">
                     </div>
                 </div>
-                <div class="post-text">${content}</div>
-                <div class="post-img-content" style="background: #f3f4f6">${randomEmoji}</div>
-                <div class="post-footer">
-                    <div class="interaction-btn" onclick="toggleLike(this)">❤️ <span class="count">0</span></div>
-                    <div class="interaction-btn">💬 0</div>
-                    <div class="interaction-btn">🔗 0</div>
-                </div>
             `;
-
-            feed.insertBefore(newPost, feed.firstChild);
-            document.getElementById('postContent').value = "";
-            
-            postCounter++;
-            document.getElementById('postCount').innerText = postCounter;
+            feed.insertBefore(post, feed.firstChild);
+            input.value = "";
+            postCount++;
+            document.getElementById('post-count').innerText = postCount;
         }
 
+        // STORY
+        function addStory() {
+            const input = document.getElementById('main-input');
+            const text = input.value.trim();
+            if (!text) return alert("Escreva o texto do seu Story na caixa principal!");
+
+            const list = document.getElementById('stories-list');
+            const item = document.createElement('div');
+            item.className = 'story-item';
+            item.onclick = () => viewStory(text);
+            item.innerHTML = `
+                <div class="story-ring"><div class="story-avatar" style="background: var(--secondary); color: white;">VC</div></div>
+                <span class="story-name">Seu Story</span>
+            `;
+            list.appendChild(item);
+            input.value = "";
+            alert("Story postado com sucesso!");
+        }
+
+        function viewStory(text) {
+            document.getElementById('story-text-display').innerText = text;
+            document.getElementById('story-modal').style.display = 'flex';
+        }
+
+        function closeStory() {
+            document.getElementById('story-modal').style.display = 'none';
+        }
+
+        // INTERAÇÕES
         function toggleLike(btn) {
-            btn.classList.toggle('liked');
-            const countSpan = btn.querySelector('.count');
-            let count = parseInt(countSpan.innerText);
-            
-            if (btn.classList.contains('liked')) {
-                count++;
-                btn.style.color = "#ef4444";
-            } else {
-                count--;
-                btn.style.color = "var(--text-muted)";
-            }
-            countSpan.innerText = count;
+            btn.classList.toggle('active');
+            let span = btn.querySelector('span');
+            let count = parseInt(span.innerText);
+            span.innerText = btn.classList.contains('active') ? count + 1 : count - 1;
         }
+
+        function toggleSave(btn) {
+            btn.classList.toggle('saved');
+            btn.innerText = btn.classList.contains('saved') ? '🔖 Salvo' : '🔖';
+        }
+
+        function sharePost() {
+            alert("Link copiado para a área de transferência! ✈️");
+        }
+
+        function focusComment(btn) {
+            btn.closest('.post-card').querySelector('.comment-input').focus();
+        }
+
+        function postComment(e, input) {
+            if (e.key === 'Enter' && input.value.trim()) {
+                const list = input.closest('.comment-section').querySelector('.comments-list');
+                const div = document.createElement('div');
+                div.className = 'comment';
+                div.innerHTML = `<b>Você:</b> ${input.value}`;
+                list.appendChild(div);
+                input.value = "";
+            }
+        }
+
+        // ATUALIZAR TEMPO
+        setInterval(() => {
+            document.querySelectorAll('.post-time').forEach(span => {
+                const time = span.getAttribute('data-time');
+                if (!time) return;
+                const diff = Math.floor((new Date().getTime() - time) / 60000);
+                if (diff < 1) span.innerText = 'agora mesmo';
+                else if (diff === 1) span.innerText = 'há 1 minuto';
+                else span.innerText = `há ${diff} minutos`;
+            });
+        }, 10000);
     </script>
 </body>
 </html>
