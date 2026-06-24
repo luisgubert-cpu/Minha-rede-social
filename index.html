@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>InstaPro - Sua Rede Social</title>
+    <title>InstaPro - Verão ☀️</title>
     <style>
         :root {
-            --primary: #8b5cf6;
-            --primary-dark: #7c3aed;
-            --secondary: #ec4899;
-            --bg: #f5f3ff;
+            --primary: #ff8c00; /* Laranja Solar */
+            --primary-dark: #e67e00;
+            --secondary: #00bfff; /* Azul Marinho/Céu */
+            --bg: #fffaf0; /* Bege Areia muito claro */
             --white: #ffffff;
-            --text-main: #1e1b4b;
-            --text-muted: #6b7280;
-            --border: #e5e7eb;
-            --gradient: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
-            --gradient-hover: linear-gradient(135deg, #7c3aed 0%, #db2777 100%);
+            --text-main: #2f4f4f;
+            --text-muted: #708090;
+            --border: #ffe4b5;
+            --gradient: linear-gradient(135deg, #ff8c00 0%, #ffd700 100%); /* Gradiente Pôr do Sol */
+            --gradient-hover: linear-gradient(135deg, #ff7f50 0%, #ff8c00 100%);
         }
 
         body {
@@ -37,7 +37,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: 0 2px 10px rgba(139, 92, 246, 0.1);
+            box-shadow: 0 2px 10px rgba(255, 140, 0, 0.1);
         }
 
         .logo {
@@ -52,7 +52,7 @@
         }
 
         .search-bar {
-            background: #f3f4f6;
+            background: #fff5e6;
             border-radius: 25px;
             padding: 10px 25px;
             width: 450px;
@@ -66,7 +66,7 @@
         .search-bar:focus-within {
             border-color: var(--primary);
             background: white;
-            box-shadow: 0 0 0 4px rgba(139, 92, 246, 0.1);
+            box-shadow: 0 0 0 4px rgba(255, 140, 0, 0.1);
         }
 
         .search-bar input {
@@ -96,7 +96,7 @@
             font-weight: bold;
             font-size: 14px;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 10px rgba(255, 140, 0, 0.3);
         }
 
         /* --- LAYOUT --- */
@@ -156,7 +156,7 @@
             display: flex;
             justify-content: space-around;
             padding: 20px 0;
-            background: #fafafa;
+            background: #fffdfa;
             border-top: 1px solid var(--border);
         }
 
@@ -204,11 +204,11 @@
 
         textarea {
             width: 100%;
-            border: 2px solid #f3f4f6;
+            border: 2px solid #fff5e6;
             border-radius: 15px;
             padding: 15px;
             resize: none;
-            background: #f9fafb;
+            background: #fffaf0;
             outline: none;
             font-size: 16px;
             transition: 0.3s;
@@ -224,9 +224,9 @@
             font-weight: 700;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 4px 12px rgba(139, 92, 246, 0.3);
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.3);
         }
-        .btn-publish:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(139, 92, 246, 0.4); }
+        .btn-publish:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(255, 140, 0, 0.4); }
 
         /* --- POST CARD --- */
         .post-card { padding: 25px; animation: fadeIn 0.5s ease; }
@@ -240,7 +240,7 @@
         .post-img-content {
             width: 100%;
             border-radius: 15px;
-            background: #ede9fe;
+            background: #fff5e6;
             aspect-ratio: 16/9;
             display: flex;
             align-items: center;
@@ -267,8 +267,21 @@
             padding: 8px 15px;
             border-radius: 10px;
         }
-        .interaction-btn:hover { background: #f5f3ff; color: var(--primary); }
-        .interaction-btn.liked { color: #ef4444; }
+        .interaction-btn:hover { background: #fff5e6; color: var(--primary); }
+        .interaction-btn.liked { color: #ff4500; }
+        .interaction-btn.saved { color: #ffd700; }
+
+        /* COMMENTS SECTION */
+        .comment-section {
+            background: #fffdfa;
+            padding: 15px;
+            border-top: 1px solid var(--border);
+            margin-top: 15px;
+        }
+        .comment-item { font-size: 14px; margin-bottom: 8px; }
+        .comment-item b { color: var(--primary); }
+        .comment-input-area { display: flex; gap: 10px; margin-top: 10px; }
+        .comment-input { flex: 1; border: 1px solid var(--border); border-radius: 20px; padding: 5px 15px; font-size: 13px; outline: none; }
 
         /* --- ONLINE USERS --- */
         .online-user {
@@ -298,7 +311,7 @@
         <div class="logo">📸 InstaPro</div>
         <div class="search-bar">
             <span>🔍</span>
-            <input type="text" placeholder="Pesquisar no InstaPro...">
+            <input type="text" placeholder="Pesquisar no Verão...">
         </div>
         <div class="header-icons">
             <span title="Notificações">🔔</span>
@@ -328,24 +341,22 @@
 
         <!-- FEED CENTRAL -->
         <div class="main-feed">
-            <div class="stories-strip">
-                <div class="story-circle">
-                    <div class="story-img" style="display: flex; align-items: center; justify-content: center; font-size: 30px; border-style: dashed; color: #cbd5e1;">+</div>
+            <div class="stories-strip" id="storiesStrip">
+                <div class="story-circle" onclick="addStory()">
+                    <div class="story-img" style="display: flex; align-items: center; justify-content: center; font-size: 30px; border-style: dashed; color: #ff8c00;">+</div>
                     <span style="font-size: 12px; font-weight: 600;">Seu story</span>
                 </div>
-                <div class="story-circle"><div class="story-img" style="background: #fef3c7; display: flex; align-items: center; justify-content: center;">🎨</div><span style="font-size: 12px;">Ana</span></div>
-                <div class="story-circle"><div class="story-img" style="background: #e0f2fe; display: flex; align-items: center; justify-content: center;">🚀</div><span style="font-size: 12px;">Carlos</span></div>
-                <div class="story-circle"><div class="story-img" style="background: #fce7f3; display: flex; align-items: center; justify-content: center;">📸</div><span style="font-size: 12px;">Bia</span></div>
-                <div class="story-circle"><div class="story-img" style="background: #dcfce7; display: flex; align-items: center; justify-content: center;">💻</div><span style="font-size: 12px;">Dev</span></div>
+                <div class="story-circle"><div class="story-img" style="background: #fef3c7; display: flex; align-items: center; justify-content: center;">🍦</div><span style="font-size: 12px;">Ana</span></div>
+                <div class="story-circle"><div class="story-img" style="background: #e0f2fe; display: flex; align-items: center; justify-content: center;">🏄</div><span style="font-size: 12px;">Carlos</span></div>
             </div>
 
             <div class="card post-input-card">
                 <div class="input-row">
                     <div class="profile-badge" style="width: 50px; height: 50px;">VC</div>
-                    <textarea id="postContent" placeholder="O que está acontecendo agora?" rows="2"></textarea>
+                    <textarea id="postContent" placeholder="O que está acontecendo neste verão?" rows="2"></textarea>
                 </div>
                 <div style="display: flex; justify-content: space-between; align-items: center;">
-                    <div style="display: flex; gap: 20px; font-size: 20px; cursor: pointer;">🖼️ 🎥 😊 📍</div>
+                    <div style="display: flex; gap: 20px; font-size: 20px; cursor: pointer;">🍹 🌊 ☀️ 🕶️</div>
                     <button class="btn-publish" onclick="publishPost()">Publicar</button>
                 </div>
             </div>
@@ -353,19 +364,29 @@
             <div id="feed">
                 <!-- POST INICIAL -->
                 <div class="card post-card">
-                    <div class="post-user-info">
-                        <div class="profile-badge" style="background: #ec4899;">AB</div>
-                        <div class="user-meta">
-                            <h4>Ana Beatriz <span>@anabeatriz</span></h4>
-                            <span>Agora mesmo</span>
+                    <div class="post-user-header">
+                        <div class="post-user-info">
+                            <div class="profile-badge" style="background: #00bfff;">AB</div>
+                            <div class="user-meta">
+                                <h4>Ana Beatriz <span>@anabeatriz</span></h4>
+                                <span class="post-time" data-time="1718000000000">há 5 minutos</span>
+                            </div>
                         </div>
+                        <span>•••</span>
                     </div>
-                    <div class="post-text">Bem-vindo ao novo InstaPro! O design está incrível e agora tudo funciona. 🚀✨</div>
-                    <div class="post-img-content">✨</div>
+                    <div class="post-text">Nada melhor que um dia de sol e praia! ☀️🌊 Aproveitando o InstaPro de Verão.</div>
+                    <div class="post-img-content">🏖️</div>
                     <div class="post-footer">
                         <div class="interaction-btn" onclick="toggleLike(this)">❤️ <span class="count">42</span></div>
-                        <div class="interaction-btn">💬 12</div>
-                        <div class="interaction-btn">🔗 8</div>
+                        <div class="interaction-btn" onclick="focusComment(this)">💬 Comentar</div>
+                        <div class="interaction-btn" onclick="sharePost()">✈️</div>
+                        <div class="interaction-btn" onclick="toggleSave(this)">🔖</div>
+                    </div>
+                    <div class="comment-section">
+                        <div class="comments-list"></div>
+                        <div class="comment-input-area">
+                            <input type="text" class="comment-input" placeholder="Comentar..." onkeypress="addComment(event, this)">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -378,10 +399,10 @@
                 <div style="padding: 10px 0;">
                     <div style="display: flex; justify-content: space-between; padding: 12px 20px; align-items: center;">
                         <div style="display: flex; gap: 12px; align-items: center;">
-                            <div class="profile-badge" style="background: #6366f1;">MT</div>
+                            <div class="profile-badge" style="background: #ff8c00;">MT</div>
                             <div><div style="font-weight: bold; font-size: 14px;">Mateus Silva</div><div style="font-size: 11px; color: var(--text-muted);">Seguido por Ana</div></div>
                         </div>
-                        <button style="color: var(--primary); background: none; border: 1px solid var(--primary); padding: 5px 12px; border-radius: 8px; font-weight: bold; cursor: pointer;" onclick="this.innerText='Seguindo'; this.style.background='#f5f3ff'">Seguir</button>
+                        <button style="color: var(--primary); background: none; border: 1px solid var(--primary); padding: 5px 12px; border-radius: 8px; font-weight: bold; cursor: pointer;" onclick="this.innerText='Seguindo';">Seguir</button>
                     </div>
                 </div>
             </div>
@@ -392,7 +413,6 @@
                     <div class="online-user">AB</div>
                     <div class="online-user" style="background: #3b82f6;">CS</div>
                     <div class="online-user" style="background: #10b981;">DV</div>
-                    <div class="online-user" style="background: #f59e0b;">MA</div>
                 </div>
             </div>
         </div>
@@ -401,58 +421,119 @@
     <script>
         let postCounter = 1;
 
+        function getEmojiByContext(text) {
+            const map = {
+                'praia': '🏖️', 'sol': '☀️', 'calor': '🔥', 'sorvete': '🍦',
+                'mar': '🌊', 'festa': '🎉', 'viagem': '✈️', 'comida': '🍔',
+                'musica': '🎵', 'feliz': '😊', 'trabalho': '💻'
+            };
+            for (let key in map) {
+                if (text.toLowerCase().includes(key)) return map[key];
+            }
+            return '✨';
+        }
+
         function publishPost() {
             const content = document.getElementById('postContent').value.trim();
-            if (content === "") {
-                alert("Escreva algo para publicar!");
-                return;
-            }
+            if (content === "") return alert("Escreva algo!");
 
             const feed = document.getElementById('feed');
             const newPost = document.createElement('div');
             newPost.className = 'card post-card';
-            
-            const emojis = ['🌟', '🚀', '🔥', '💎', '🌈', '⚡'];
-            const randomEmoji = emojis[Math.floor(Math.random() * emojis.length)];
+            const now = new Date().getTime();
+            const emoji = getEmojiByContext(content);
 
             newPost.innerHTML = `
-                <div class="post-user-info">
-                    <div class="profile-badge">VC</div>
-                    <div class="user-meta">
-                        <h4>Você <span>@voce_no_pro</span></h4>
-                        <span>Agora mesmo</span>
+                <div class="post-user-header">
+                    <div class="post-user-info">
+                        <div class="profile-badge">VC</div>
+                        <div class="user-meta">
+                            <h4>Você <span>@voce_no_pro</span></h4>
+                            <span class="post-time" data-time="${now}">agora mesmo</span>
+                        </div>
                     </div>
+                    <span>•••</span>
                 </div>
                 <div class="post-text">${content}</div>
-                <div class="post-img-content" style="background: #f3f4f6">${randomEmoji}</div>
+                <div class="post-img-content">${emoji}</div>
                 <div class="post-footer">
                     <div class="interaction-btn" onclick="toggleLike(this)">❤️ <span class="count">0</span></div>
-                    <div class="interaction-btn">💬 0</div>
-                    <div class="interaction-btn">🔗 0</div>
+                    <div class="interaction-btn" onclick="focusComment(this)">💬 Comentar</div>
+                    <div class="interaction-btn" onclick="sharePost()">✈️</div>
+                    <div class="interaction-btn" onclick="toggleSave(this)">🔖</div>
+                </div>
+                <div class="comment-section">
+                    <div class="comments-list"></div>
+                    <div class="comment-input-area">
+                        <input type="text" class="comment-input" placeholder="Comentar..." onkeypress="addComment(event, this)">
+                    </div>
                 </div>
             `;
 
             feed.insertBefore(newPost, feed.firstChild);
             document.getElementById('postContent').value = "";
-            
             postCounter++;
             document.getElementById('postCount').innerText = postCounter;
+        }
+
+        function addStory() {
+            const content = document.getElementById('postContent').value.trim();
+            if (content === "") return alert("Escreva algo na caixa de postagem para criar um Story!");
+            
+            const strip = document.getElementById('storiesStrip');
+            const newStory = document.createElement('div');
+            newStory.className = 'story-circle';
+            const emoji = getEmojiByContext(content);
+            newStory.innerHTML = `
+                <div class="story-img" style="background: var(--gradient); color: white; display: flex; align-items: center; justify-content: center;">${emoji}</div>
+                <span style="font-size: 12px;">Você</span>
+            `;
+            strip.appendChild(newStory);
+            document.getElementById('postContent').value = "";
+            alert("Story de Verão postado! ☀️");
         }
 
         function toggleLike(btn) {
             btn.classList.toggle('liked');
             const countSpan = btn.querySelector('.count');
             let count = parseInt(countSpan.innerText);
-            
-            if (btn.classList.contains('liked')) {
-                count++;
-                btn.style.color = "#ef4444";
-            } else {
-                count--;
-                btn.style.color = "var(--text-muted)";
-            }
-            countSpan.innerText = count;
+            countSpan.innerText = btn.classList.contains('liked') ? count + 1 : count - 1;
         }
+
+        function toggleSave(btn) {
+            btn.classList.toggle('saved');
+            btn.style.color = btn.classList.contains('saved') ? 'var(--primary)' : 'var(--text-muted)';
+        }
+
+        function sharePost() {
+            alert("Link do post de verão copiado! ✈️");
+        }
+
+        function focusComment(btn) {
+            btn.closest('.post-card').querySelector('.comment-input').focus();
+        }
+
+        function addComment(e, input) {
+            if (e.key === 'Enter' && input.value.trim() !== "") {
+                const list = input.closest('.comment-section').querySelector('.comments-list');
+                const comment = document.createElement('div');
+                comment.className = 'comment-item';
+                comment.innerHTML = `<b>Você:</b> ${input.value}`;
+                list.appendChild(comment);
+                input.value = "";
+            }
+        }
+
+        // Atualizar tempo
+        setInterval(() => {
+            document.querySelectorAll('.post-time').forEach(span => {
+                const time = span.getAttribute('data-time');
+                if (!time) return;
+                const diff = Math.floor((new Date().getTime() - time) / 60000);
+                if (diff < 1) span.innerText = 'agora mesmo';
+                else span.innerText = `há ${diff} min`;
+            });
+        }, 30000);
     </script>
 </body>
 </html>
